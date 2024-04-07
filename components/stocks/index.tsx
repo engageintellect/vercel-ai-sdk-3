@@ -23,6 +23,13 @@ const Purchase = dynamic(
   }
 )
 
+const Sell = dynamic(() => import('./stock-sell').then(mod => mod.Sell), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[375px] rounded-xl border bg-zinc-950 p-4 text-green-400 sm:h-[314px]" />
+  )
+})
+
 const Stocks = dynamic(() => import('./stocks').then(mod => mod.Stocks), {
   ssr: false,
   loading: () => <StocksSkeleton />
@@ -33,4 +40,4 @@ const Events = dynamic(() => import('./events').then(mod => mod.Events), {
   loading: () => <EventsSkeleton />
 })
 
-export { Stock, Purchase, Stocks, Events }
+export { Stock, Purchase, Sell, Stocks, Events }
