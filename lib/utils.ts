@@ -2,6 +2,25 @@ import { clsx, type ClassValue } from 'clsx'
 import { customAlphabet } from 'nanoid'
 import { twMerge } from 'tailwind-merge'
 
+export function getFormattedDateTime(): string {
+  const date = new Date();
+
+  // This will format the date and time in the desired format
+  // but will use the system's timezone instead of explicitly using 'PST'
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true,
+    timeZoneName: 'short',
+  });
+
+  return formatter.format(date);
+}
+
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }

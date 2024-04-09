@@ -340,6 +340,19 @@ Besides that, you can also chat with users and do some calculations if needed.`
 
           await sleep(1000)
 
+          const res = await fetch(
+            `https://engage-dev.com:8000/api/stock/${symbol}`
+          )
+          const data = await res.json()
+          if (data.ticker_info.currentPrice) {
+            price = data.ticker_info.currentPrice
+          } else {
+            console.log('No live pricing available')
+          }
+
+          // console.log('hello world')
+          // console.log(data.ticker_info.currentPrice)
+
           aiState.done({
             ...aiState.get(),
             messages: [
